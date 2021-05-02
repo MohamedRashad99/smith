@@ -1,0 +1,67 @@
+name: smith
+description: A new Flutter application.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_rating_bar:
+  easy_localization:
+  carousel_slider:
+  pin_code_text_field:
+  flutter_switch:
+  google_maps_flutter:
+  queen_validators:
+  image_picker:
+  platform_date_picker:
+  google_map_location_picker:
+  date_time_picker:
+  dio:
+  provider:
+  flutter_spinkit: ^4.1.2
+  shared_preferences:
+  flutter_localizations:
+    sdk: flutter
+  fluster:
+  fluttertoast:
+  cupertino_icons: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+     - assets/images/
+     - lib/Resources/Translations/
+
+fonts:
+  - family: ArialRounded
+    fonts:
+      - asset: lib/Resources/fonts/arlrdbd.ttf
+
+  - family: Cairo-Bold
+    fonts:
+      - asset: lib/Resources/fonts/Cairo-Bold.ttf

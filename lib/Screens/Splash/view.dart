@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:smith/Screens/Home/view.dart';
 import 'package:smith/Screens/SignIn/view.dart';
 import 'package:smith/constants.dart';
 import 'package:smith/generated/locale_keys.g.dart';
@@ -20,7 +21,7 @@ class _SplashScrrenState extends State<SplashScrren> {
           ()=>Navigator.pushReplacement(context,
         MaterialPageRoute(builder:
             (context) =>
-                SignInScreen(),
+                HomeScreen(),
         ),
       ),
     );

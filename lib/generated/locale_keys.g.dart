@@ -599,5 +599,6 @@ abstract class  LocaleKeys {
   static const signToContinue = 'signToContinue';
   static const doYouWantLogOut = 'doYouWantLogOut';
   static const addCar = 'addCar';
+  static const pleaseMake = 'pleaseMake';
 
 }

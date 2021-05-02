@@ -612,7 +612,8 @@ class CodegenLoader extends AssetLoader{
   "carData": "بيانات السيارة",
   "signToContinue": "تسجيل الدخول للمتابعة",
   "doYouWantLogOut": "هل تريد تسجيل الخروج",
-  "addCar": "اضافه سيارة"
+  "addCar": "اضافه سيارة",
+  "pleaseMake": "ملاحظة الخيار نعم! سيقوم بغلق التطبيق"
 };
 static const Map<String,dynamic> en_US = {
   "welcomeIn": "WelCome In JEEET",
@@ -1065,8 +1066,8 @@ static const Map<String,dynamic> en_US = {
   "editOrder": "Edit Order",
   "deleteOrderConfirmation": "Are you sure to delete this order?",
   "deleteConversationConfirm": "Are you sure to delete this conversation?",
-  "yes": "yes",
-  "no": "no",
+  "yes": "Yes",
+  "no": "No",
   "orderDeleteDone": "Your order has been deleted",
   "waitingOffers": "Waiting Delivery Offers",
   "requestSent": "your request has been sent, please wait for delivery offers.",
@@ -1209,7 +1210,8 @@ static const Map<String,dynamic> en_US = {
   "carData": "Car Data",
   "signToContinue": "Sign in to continue",
   "doYouWantLogOut": "Do you want Logout",
-  "addCar": "Add Car"
+  "addCar": "Add Car",
+  "pleaseMake": "Note's Yes ! option will exit from app"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar_EG": ar_EG, "en_US": en_US};
 }

@@ -524,8 +524,8 @@
   "editOrder": "Edit Order",
   "deleteOrderConfirmation": "Are you sure to delete this order?",
   "deleteConversationConfirm": "Are you sure to delete this conversation?",
-  "yes": "yes",
-  "no": "no",
+  "yes": "Yes",
+  "no": "No",
   "orderDeleteDone": "Your order has been deleted",
   "waitingOffers": "Waiting Delivery Offers",
   "requestSent": "your request has been sent, please wait for delivery offers.",
@@ -671,6 +671,7 @@
   "carData": "Car Data",
   "signToContinue": "Sign in to continue",
   "doYouWantLogOut": "Do you want Logout",
-  "addCar": "Add Car"
+  "addCar": "Add Car",
+  "pleaseMake": "Note's Yes ! option will exit from app"
 
 }

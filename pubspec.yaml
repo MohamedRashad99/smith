@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_rating_bar:
+  curved_navigation_bar: ^0.3.7
   easy_localization:
   carousel_slider:
   pin_code_text_field:
@@ -57,11 +58,13 @@ flutter:
      - assets/images/
      - lib/Resources/Translations/
 
-fonts:
-  - family: ArialRounded
-    fonts:
-      - asset: lib/Resources/fonts/arlrdbd.ttf
-
-  - family: Cairo-Bold
-    fonts:
-      - asset: lib/Resources/fonts/Cairo-Bold.ttf
+  fonts:
+     - family: dinnextl bold
+       fonts:
+         - asset: assets/fonts/ArbFONTS-DINNextLTArabic-Bold-2.ttf
+     - family: dinnextl medium
+       fonts:
+         - asset: assets/fonts/ArbFONTS-DINNextLTArabic-Medium-2.ttf
+     - family: dinnextl regular
+       fonts:
+         - asset: assets/fonts/ArbFONTS-DINNextLTArabic-Regular-2.ttf

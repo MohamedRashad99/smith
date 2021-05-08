@@ -33,17 +33,17 @@ class SignInController{
     var response = _netWork.postData(url: 'login',
       formData: formData,);
     response.then((value){
-      print(value.data['data']);
-      print(value['msg']);
-      globals.uid=value['data']['id'];
+      //print(value.data['data'].toString());
+      print(value['msg'].toString());
+     /* globals.uid=value['data']['id'];
       print("UerID : ${globals.uid}");
-
+*/
       if(value['msg']=='success'){
         savePref("${value['data']['api_token']}");
 
 
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-            BottomNavBar()), (Route<dynamic> route) => false);
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+            BottomNavBar()),);
 
 
       }else if(value['data'] == 'check your phone or password'){

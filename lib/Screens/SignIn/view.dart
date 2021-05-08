@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:queen_validators/queen_validators.dart';
 import 'package:smith/Screens/ChooseService/pages.dart';
+import 'package:smith/Screens/SignUp/Data/provider.dart';
 import 'package:smith/Screens/SignUp/view.dart';
 import 'package:smith/constants.dart';
 import 'package:smith/generated/locale_keys.g.dart';
@@ -53,11 +55,14 @@ class _SignInViewState extends State<SignInView> {
   }
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SignUpProvider>(context);
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Form(
+        key:_formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Container(
             height: height,
@@ -95,6 +100,7 @@ class _SignInViewState extends State<SignInView> {
                       MinLength(5),
                     ]), controller: _phoneController,
 
+
                   ),
                   CustomTextField(
                     hint: LocaleKeys.password.tr(),
@@ -106,7 +112,10 @@ class _SignInViewState extends State<SignInView> {
                       MinLength(5),
                     ]), controller: _passwordController,
 
-                  ),
+
+
+
+            ),
                   SizedBox(height: height*0.1,),
                   CustomButton(
                     isLoading: isLoading,

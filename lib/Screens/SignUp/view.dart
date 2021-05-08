@@ -81,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if(v.isEmpty){
                         return LocaleKeys.userName.tr();
                       }else if(v.length<4){
-                        return context.locale == Locale('en', 'US')?"Name must be content of two minimum word":"يجب أن يتكون الاسم من كلمتين على الأقل";
+                        return context.locale == Locale('en', 'US')?"Name must be content of two minimum words":"يجب أن يتكون الاسم من كلمتين على الأقل";
                       }
                       return null;
                     },

@@ -8,101 +8,136 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:smith/widgets/componant.dart';
 import 'package:smith/widgets/customButton.dart';
 import 'package:smith/widgets/customTextFeild.dart';
+
+import 'Data/loginController.dart';
 class SignInView extends StatefulWidget {
   @override
   _SignInViewState createState() => _SignInViewState();
 }
 
 class _SignInViewState extends State<SignInView> {
-  TextEditingController _phoneController= TextEditingController();
-  TextEditingController _passwordController= TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final _phoneController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
+  bool isLoading = false;
+
+  void _submit(){
+    final isValid = _formKey.currentState.validate();
+    if(isValid){
+      final phoneNo = _phoneController.text.trim();
+      final password = _passwordController.text.trim();
+      setState(() {
+        isLoading = true;
+      });
+      SignInController().SignIn(context: context,num: phoneNo,pass: password).then((value) {
+        setState(() {
+          isLoading = false;
+        });
+      });
+      print('$phoneNo $password');
+
+      print('navigate to home screen');
+      return ;
+    }else{
+      print('show snack bar with error');
+    }
+  }
+
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      body: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Container(
+            height: height,
+            width: width,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: height*0.1,),
+                  Container(
+                    width: width*0.4,
+                    child: Image.asset("assets/images/loogo.PNG"),
+                  ),
+                  SizedBox(height: height*0.03,),
+                  Container(
+                    padding: EdgeInsets.only(right: width*0.4),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(LocaleKeys.welcome.tr(),style: TextStyle(fontSize: 28,fontFamily:"dinnextl bold",)),
+                        Text(LocaleKeys.signToContinue.tr(),style: TextStyle(fontSize: 20,fontFamily:"dinnextl bold",color: kTextColor)),
 
-      body: Container(
-          height: height,
-          width: width,
-          child: SingleChildScrollView(
-            child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: height*0.1,),
+                      ],
+                    ),
+                  ),
 
-                Container(
-                  width: width*0.4,
-                  child: Image.asset("assets/images/loogo.PNG"),
-                ),
-                SizedBox(height: height*0.03,),
-                Container(
-                  padding: EdgeInsets.only(right: width*0.4),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  SizedBox(height: height*0.05,),
+
+                  CustomTextField(
+                    label: true,
+                    hint: LocaleKeys.enterPhone.tr(),
+                    dIcon: Icons.phone_android,
+                    type: TextInputType.phone,
+                    valid:qValidator([
+                      IsRequired(msg:LocaleKeys.enterPhone.tr()),
+                      MinLength(5),
+                    ]), controller: _phoneController,
+
+                  ),
+                  CustomTextField(
+                    hint: LocaleKeys.password.tr(),
+                    icon: Icons.lock_outline,
+                    dIcon: Icons.lock_outline,
+                    type: TextInputType.text,
+                    valid:qValidator([
+                      IsRequired(msg:LocaleKeys.password.tr()),
+                      MinLength(5),
+                    ]), controller: _passwordController,
+
+                  ),
+                  SizedBox(height: height*0.1,),
+                  CustomButton(
+                    isLoading: isLoading,
+                    onPressed: _submit,
+                    title: LocaleKeys.signIn.tr(),
+
+                  ),
+                  SizedBox(height: height * 0.02,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(LocaleKeys.welcome.tr(),style: TextStyle(fontSize: 28,fontFamily:"dinnextl bold",)),
-                      Text(LocaleKeys.signToContinue.tr(),style: TextStyle(fontSize: 20,fontFamily:"dinnextl bold",color: kTextColor)),
+                      Text(LocaleKeys.donHave.tr(), style: TextStyle(color: kTextColor,
+                          fontFamily: "dinnextl bold",
+                          fontSize: 16),),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
+                        },
+                        child: Text(LocaleKeys.signup.tr(), style: TextStyle(
+                            color: kPrimaryColor,
+                            fontFamily: "dinnextl bold",
+                            fontSize: 18),),
+                      ),
 
                     ],
                   ),
-                ),
 
-                SizedBox(height: height*0.05,),
-
-                CustomTextField(
-                  label: true,
-                  hint: LocaleKeys.enterPhone.tr(),
-                  dIcon: Icons.phone_android,
-                  controller: _phoneController,
-                  type: TextInputType.phone,
-                  valid:qValidator([
-                    IsRequired(msg:LocaleKeys.enterPhone.tr()),
-                    MinLength(5),
-                  ]),
-
-                ),
-                CustomTextField(
-                  hint: LocaleKeys.plateNumber.tr(),
-                  icon: Icons.lock_outline,
-                  dIcon: Icons.lock_outline,
-                  controller: _passwordController,
-                  type: TextInputType.text,
-                  valid:qValidator([
-                    IsRequired(msg:LocaleKeys.plateNumber.tr()),
-                    MinLength(5),
-                  ]),
-
-                ),
-                SizedBox(height: height*0.1,),
-                CustomButton(
-                  title: LocaleKeys.signIn.tr(),
-                  onPressed: ()=>navigateTo(context, BottomNavBar()),
-                ),
-                SizedBox(height: height * 0.02,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(LocaleKeys.donHave.tr(), style: TextStyle(color: kTextColor,
-                        fontFamily: "dinnextl bold",
-                        fontSize: 16),),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
-                      },
-                      child: Text(LocaleKeys.signup.tr(), style: TextStyle(
-                          color: kPrimaryColor,
-                          fontFamily: "dinnextl bold",
-                          fontSize: 18),),
-                    ),
-
-                  ],
-                ),
-
-              ],
-            ),
-          )),
+                ],
+              ),
+            )),
+      ),
     );
   }
 }

@@ -5,20 +5,29 @@ import 'package:provider/provider.dart';
 import 'package:smith/Screens/Splash/view.dart';
 import 'package:smith/constants.dart';
 
+import 'Screens/SignUp/Data/provider.dart';
+
 
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Provider.debugCheckInvalidValueType= null;
+
   runApp(
-    EasyLocalization(
-      child: MyApp(),
-      saveLocale: true,
-      supportedLocales: [
-        Locale('en', 'US'),
-        Locale('ar', 'EG'),
+    MultiProvider(
+      providers: [
+        Provider<SignUpProvider>(
+            create: (_) => SignUpProvider()),
       ],
-      path: 'lib/Resources/Translations',
+      child: EasyLocalization(
+        child: MyApp(),
+        saveLocale: true,
+        supportedLocales: [
+          Locale('en', 'US'),
+          Locale('ar', 'EG'),
+        ],
+        path: 'lib/Resources/Translations',
+      ),
     ),
   );
   SystemChrome.setPreferredOrientations([

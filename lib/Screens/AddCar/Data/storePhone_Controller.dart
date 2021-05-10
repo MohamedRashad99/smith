@@ -9,7 +9,7 @@ class SphoneController {
   NetWork _netWork = NetWork();
   StorePhoneModel _storePhoneModel = StorePhoneModel();
 
-  Future<StorePhoneModel> getSPhoneData({var phone , var carNum} ) async {
+  Future<StorePhoneModel> setPhoneData({var phone , var carNum} ) async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     print("تخزين الفون"+ _prefs.getString("token"));
     Map<String, dynamic> _body = {
@@ -31,6 +31,7 @@ class SphoneController {
       print(response);
     } else {
       _storePhoneModel = StorePhoneModel(msg: "success");
+
     }
     return _storePhoneModel;
   }

@@ -16,27 +16,7 @@ class _NotificationViewState extends State<NotificationView> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: kPrimaryColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25))),
-       /* leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Image.asset(
-              "assets/images/arrow.jpeg",
-              scale: 10,
-            )),*/
-        centerTitle: true,
-        title: Text(
-          LocaleKeys.notifications.tr(),
-          style: TextStyle(
-              fontSize: 22, color: kHomeColor, fontFamily: "dinnextl bold"),
-        ),
-      ),
+      appBar: buildAppBar(),
       body: Container(
           height: height,
           width: width,
@@ -45,5 +25,29 @@ class _NotificationViewState extends State<NotificationView> {
           )),
     );
 
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: kPrimaryColor,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(25),
+              bottomRight: Radius.circular(25))),
+     /* leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Image.asset(
+            "assets/images/arrow.jpeg",
+            scale: 10,
+          )),*/
+      centerTitle: true,
+      title: Text(
+        LocaleKeys.notifications.tr(),
+        style: TextStyle(
+            fontSize: 22, color: kHomeColor, fontFamily: "dinnextl bold"),
+      ),
+    );
   }
 }

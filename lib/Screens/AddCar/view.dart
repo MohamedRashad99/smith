@@ -31,8 +31,8 @@ class _AddCarState extends State<AddCar> {
 
 
   bool loading = true;
-  Future _getData()async{
-     await _sphoneController.getSPhoneData(
+  Future _setData()async{
+     await _sphoneController.setPhoneData(
       carNum: _carNumController.text.toString(),
       phone:  _phoneController.toString()
     );
@@ -44,39 +44,15 @@ class _AddCarState extends State<AddCar> {
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _carNumController = TextEditingController();
 
-  int pageIndex = 0;
   final NotificationView notificationView = NotificationView();
-
-  GlobalKey _bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-
-
       backgroundColor: kBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: kPrimaryColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25))),
-        leading: GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInView()));            },
-            child: Image.asset(
-              "assets/images/arrow.jpeg",
-              scale: 10,
-            )),
-        centerTitle: true,
-        title: Text(
-          LocaleKeys.addCar.tr(),
-          style: TextStyle(
-              fontSize: 22, color: kHomeColor, fontFamily: "dinnextl bold"),
-        ),
-      ),
+      appBar: buildAppBar(context),
       body: Form(
         key: _formKey,
         child: Container(
@@ -129,14 +105,35 @@ class _AddCarState extends State<AddCar> {
                   ),
                   CustomButton(
                     title: LocaleKeys.save.tr(),
-                    onPressed: _getData,
+                    onPressed: _setData,
 
-
-                    //isLoading: true,
                   ),
                 ],
               ),
             )),
+      ),
+    );
+  }
+
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: kPrimaryColor,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(25),
+              bottomRight: Radius.circular(25))),
+      leading: GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInView()));            },
+          child: Image.asset(
+            "assets/images/arrow.jpeg",
+            scale: 10,
+          )),
+      centerTitle: true,
+      title: Text(
+        LocaleKeys.addCar.tr(),
+        style: TextStyle(
+            fontSize: 22, color: kHomeColor, fontFamily: "dinnextl bold"),
       ),
     );
   }

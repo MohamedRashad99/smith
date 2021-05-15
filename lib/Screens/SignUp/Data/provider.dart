@@ -11,7 +11,6 @@ class SignUpProvider extends ChangeNotifier {
   var updated_at;
   var created_at;
   var id;
-   var car_number;
   setToken(String token){
     api_token=token;
     notifyListeners();

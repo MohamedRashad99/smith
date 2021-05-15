@@ -29,11 +29,9 @@ dependencies:
   carousel_slider:
   pin_code_text_field:
   flutter_switch:
-  google_maps_flutter:
   queen_validators:
   image_picker:
   platform_date_picker:
-  google_map_location_picker:
   date_time_picker:
   dio:
   provider:
@@ -44,7 +42,7 @@ dependencies:
   fluster:
   fluttertoast:
   cupertino_icons: ^1.0.0
-
+  pretty_dio_logger:
 dev_dependencies:
   flutter_launcher_icons: "^0.8.0"
   flutter_test:

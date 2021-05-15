@@ -30,19 +30,28 @@ class _AddCarState extends State<AddCar> {
 
 
 
-  bool loading = true;
+  bool loading = false;
   Future _setData()async{
-     await _sphoneController.setPhoneData(
-      carNum: _carNumController.text.toString(),
-      phone:  _phoneController.toString()
-    );
+    final isValid = _formKey.currentState.validate();
+    if(isValid) {
+      await _sphoneController.setPhoneData(
+          carNum: _carNumController.text,
+          phone:  _phoneController.text
+      );
+    }
     setState(() {
-      loading = false;
+      loading = true;
     });
   }
+  @override
+  void dispose() {
+    _carNumController.dispose();
+    _phoneController.dispose();
+    super.dispose();
+  }
 
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _carNumController = TextEditingController();
+  final  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _carNumController = TextEditingController();
 
   final NotificationView notificationView = NotificationView();
 
@@ -55,7 +64,7 @@ class _AddCarState extends State<AddCar> {
       appBar: buildAppBar(context),
       body: Form(
         key: _formKey,
-        child: Container(
+        child: SizedBox(
             height: height,
             width: width,
             child: SingleChildScrollView(
@@ -77,7 +86,7 @@ class _AddCarState extends State<AddCar> {
                     child: Image.asset("assets/images/loogo.PNG"),
                   ),
                   SizedBox(
-                    height: height * 0.05,
+                    height: height * 0.02,
                   ),
                   CustomTextField(
                     label: true,
@@ -105,8 +114,11 @@ class _AddCarState extends State<AddCar> {
                   ),
                   CustomButton(
                     title: LocaleKeys.save.tr(),
-                    onPressed: _setData,
-
+                    onPressed: (){
+                      if(_formKey.currentState.validate()){
+                        _setData();
+                      }
+                    },
                   ),
                 ],
               ),

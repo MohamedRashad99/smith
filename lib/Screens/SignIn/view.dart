@@ -131,6 +131,7 @@ class _SignInViewState extends State<SignInView> {
                     height: height * 0.1,
                   ),
                   CustomButton(
+
                     isLoading: isLoading,
                     onPressed: _submit,
                     title: LocaleKeys.signIn.tr(),

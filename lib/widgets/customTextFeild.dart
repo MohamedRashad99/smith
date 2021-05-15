@@ -71,18 +71,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
           filled: true,
           //prefixText: widget.hint,
           fillColor:Colors.white,
-          // enabledBorder: OutlineInputBorder(
-          //   borderSide: BorderSide(color:kPrimaryColor,width: 1),
-          //   borderRadius: BorderRadius.circular(10),
-          // ),
-          // focusedBorder: OutlineInputBorder(
-          //   borderSide: BorderSide(color: kPrimaryColor,width:2),
-          //   borderRadius: BorderRadius.circular(10),
-          // ),
-          // border: OutlineInputBorder(
-          //   borderSide: BorderSide(color: Colors.red),
-          //   borderRadius: BorderRadius.circular(10),
-          // ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color:kPrimaryColor,width: 1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor,width:2),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       ),
     );

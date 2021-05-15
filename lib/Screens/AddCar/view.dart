@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,6 @@ class AddCar extends StatefulWidget {
 class _AddCarState extends State<AddCar> {
   final _formKey = GlobalKey<FormState>();
 
-  StorePhoneModel _storePhoneModel = StorePhoneModel();
   SphoneController _sphoneController = SphoneController();
 
 
@@ -64,65 +62,71 @@ class _AddCarState extends State<AddCar> {
       appBar: buildAppBar(context),
       body: Form(
         key: _formKey,
-        child: SizedBox(
-            height: height,
-            width: width,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: height * 0.1,
-                  ),
-                  Text(
-                    LocaleKeys.addCar.tr(),
-                    style: TextStyle(fontSize: 30, fontFamily: "dinnextl bold"),
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Container(
-                    height: height * 0.2,
-                    child: Image.asset("assets/images/loogo.PNG"),
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  CustomTextField(
-                    label: true,
-                    hint: LocaleKeys.enterPhone.tr(),
-                    dIcon: Icons.phone_android,
-                    controller: _phoneController,
-                    type: TextInputType.phone,
-                    valid: qValidator([
-                      IsRequired(msg: LocaleKeys.enterPhone.tr()),
-                      MinLength(5),
-                    ]),
-                  ),
-                  CustomTextField(
-                    hint: LocaleKeys.plateNumber.tr(),
-                    dIcon: Icons.car_rental,
-                    controller: _carNumController,
-                    type: TextInputType.number,
-                    valid: qValidator([
-                      IsRequired(msg: LocaleKeys.plateNumber.tr()),
-                      MinLength(5),
-                    ]),
-                  ),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  CustomButton(
-                    title: LocaleKeys.save.tr(),
-                    onPressed: (){
-                      if(_formKey.currentState.validate()){
-                        _setData();
-                      }
-                    },
-                  ),
-                ],
-              ),
-            )),
+        child: SafeArea(
+          top: true,
+          bottom:true ,
+          right: true,
+          left: true,
+          child: SizedBox(
+              height: height,
+              width: width,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: height * 0.1,
+                    ),
+                    Text(
+                      LocaleKeys.addCar.tr(),
+                      style: TextStyle(fontSize: 30, fontFamily: "dinnextl bold"),
+                    ),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    Container(
+                      height: height * 0.2,
+                      child: Image.asset("assets/images/loogo.PNG"),
+                    ),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    CustomTextField(
+                      label: true,
+                      hint: LocaleKeys.enterPhone.tr(),
+                      dIcon: Icons.phone_android,
+                      controller: _phoneController,
+                      type: TextInputType.phone,
+                      valid: qValidator([
+                        IsRequired(msg: LocaleKeys.enterPhone.tr()),
+                        MinLength(5),
+                      ]),
+                    ),
+                    CustomTextField(
+                      hint: LocaleKeys.plateNumber.tr(),
+                      dIcon: Icons.car_rental,
+                      controller: _carNumController,
+                      type: TextInputType.number,
+                      valid: qValidator([
+                        IsRequired(msg: LocaleKeys.plateNumber.tr()),
+                        MinLength(5),
+                      ]),
+                    ),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
+                    CustomButton(
+                      title: LocaleKeys.save.tr(),
+                      onPressed: (){
+                        if(_formKey.currentState.validate()){
+                          _setData();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              )),
+        ),
       ),
     );
   }

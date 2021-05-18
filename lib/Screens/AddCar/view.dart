@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:queen_validators/queen_validators.dart';
@@ -10,6 +12,7 @@ import 'package:smith/generated/locale_keys.g.dart';
 
 import 'package:smith/widgets/customButton.dart';
 import 'package:smith/widgets/customTextFeild.dart';
+import 'package:smith/widgets/smallButton.dart';
 
 import 'Data/storePhone_Controller.dart';
 import 'Data/storePhone_Model.dart';
@@ -63,10 +66,7 @@ class _AddCarState extends State<AddCar> {
       body: Form(
         key: _formKey,
         child: SafeArea(
-          top: true,
-          bottom:true ,
-          right: true,
-          left: true,
+
           child: SizedBox(
               height: height,
               width: width,
@@ -140,7 +140,11 @@ class _AddCarState extends State<AddCar> {
               bottomRight: Radius.circular(25))),
       leading: GestureDetector(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInView()));            },
+           // Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInView()));
+           // onWillPop: _onWillPop,
+            _onWillPop();
+
+       },
           child: Image.asset(
             "assets/images/arrow.jpeg",
             scale: 10,
@@ -152,6 +156,31 @@ class _AddCarState extends State<AddCar> {
             fontSize: 22, color: kHomeColor, fontFamily: "dinnextl bold"),
       ),
     );
+  }
+  Future<bool> _onWillPop() {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(LocaleKeys.doYouWantLogOut.tr(),
+          style: TextStyle(fontSize: 20, color: kPrimaryColor, fontFamily: "dinnextl bold"),),
+        content: Text(LocaleKeys.pleaseMake.tr(),
+          style: TextStyle(fontSize: 10, color: kPrimaryColor,),),
+        actions: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SmallButton(onPressed:() => Navigator.of(context).pop(false),
+                  title: LocaleKeys.no.tr()),
+              SizedBox(width: 40,),
+              SmallButton(onPressed: () => exit(0),
+                  title: LocaleKeys.yes.tr()),
+            ],
+          ),
+
+        ],
+      ),
+    ) ??
+        false;
   }
 }
 

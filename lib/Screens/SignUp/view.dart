@@ -21,10 +21,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final  TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
@@ -47,10 +47,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: Form(
         key: _formKey,
         child: SafeArea(
-          top: true,
-          bottom:true ,
-          right: true,
-          left: true,
           child: AnimatedContainer(
               duration: Duration(seconds: 2),
               curve: Curves.decelerate,
@@ -134,6 +130,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       valid: qValidator([
                         IsRequired(msg: LocaleKeys.password.tr()),
                         MinLength(5),
+                        Match(_confirmPasswordController.text),
                       ]),
                     ),
                     CustomTextField(
@@ -145,6 +142,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       valid: qValidator([
                         IsRequired(msg: LocaleKeys.confirmPass.tr()),
                         MinLength(5),
+                        Match(_passwordController.text),
+
                       ]),
                     ),
                     SizedBox(
